@@ -273,16 +273,19 @@
           try {
             submitBtn.disabled = true;
             submitBtn.textContent = "Submitting...";
-            const formData = new FormData(e.target);
+            const formData = new URLSearchParams();
+            formData.append("name", e.target.name.value);
+            formData.append("email", e.target.email.value);
+            formData.append("phone", e.target.phone.value);
 
             const response = await fetch(
-              "https://script.google.com/macros/s/AKfycbxuPpcqMkqnO9X3R7XlQdyfWcxsWG5eO1vXfXPdxQtfcwo5AEk-F50idlbebHDeWQL6/exec",
+              "https://script.google.com/macros/s/AKfycbzyXehIXUcIx6yQnnT5aO4Oo5qaZ56lk6mNEVPZebE9o8VgbbfwcN1J19JhiIXuxLbC/exec",
               {
                 method: "POST",
-                body: formData,
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded",
                 },
+                body: formData,
               }
             );
 
